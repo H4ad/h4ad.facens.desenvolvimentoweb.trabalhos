@@ -2,10 +2,14 @@
   "name": "23-02-2022-exercicio-analise",
   "private": true,
   "version": "0.0.0",
+  "author": "Vinícius Lourenço",
+  "license": "MIT",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "gen:cname": "echo \"facens-dev-web-exercicio-analise.surge.sh\" > ./dist/CNAME",
+    "deploy:surge": "npm run build && npm run gen:cname && surge ./dist"
   },
   "dependencies": {
     "@emotion/react": "^11.8.1",
