@@ -1,0 +1,21 @@
+.header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  width: 100vw;
+
+  padding: 1rem 0;
+
+  svg {
+    height: 2.5rem;
+    width: 2.5rem;
+  }
+
+  h1 {
+    color: black;
+    margin-top: .5rem;
+    margin-bottom: 0;
+  }
+}
