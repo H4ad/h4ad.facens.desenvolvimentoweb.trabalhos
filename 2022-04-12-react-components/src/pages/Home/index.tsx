@@ -1,5 +1,6 @@
-import { ChangeEvent, FormEvent, useReducer } from 'react';
+import { ChangeEvent, useReducer, useState } from 'react';
 import { toast } from 'react-toastify';
+import Client from '../components/Client';
 import Header from '../components/Header';
 import * as S from './styles.module.scss';
 
@@ -59,6 +60,8 @@ const defaultFormState = {
 };
 
 function Home() {
+  const [clients, setClients] = useState([]);
+
   const [state, onChangeForm] = useReducer(useFormReducer, defaultFormState, (state) => state);
 
   function onSubmit(event) {
@@ -68,6 +71,8 @@ function Home() {
 
     if (!isValid)
       return;
+
+    setClients(oldClients => [...oldClients, state]);
 
     event.target.reset();
 
@@ -96,6 +101,14 @@ function Home() {
 
         <button type="submit">Enviar</button>
       </form>
+
+      <ul>
+        { clients?.map(client => (
+          <li>
+            <Client name={ client.name } phone={ client.phone } />
+          </li>
+        )) }
+      </ul>
     </main>
   );
 }
