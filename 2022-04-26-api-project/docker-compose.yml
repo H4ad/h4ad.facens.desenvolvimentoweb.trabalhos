@@ -1,0 +1,35 @@
+version: '3'
+
+services:
+  mysql:
+    container_name: faker_database
+    restart: always
+    image: mysql:5.7
+    command: --default-authentication-plugin=mysql_native_password
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: faker
+      MYSQL_DATABASE: faker
+    networks:
+      - standard
+
+  server:
+    container_name: faker_server
+    restart: always
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      DATABASE_HOST: mysql
+      DATABASE_NAME: faker
+      DATABASE_USER: root
+      DATABASE_PASSWORD: faker
+      DATABASE_PORT: 3306
+      PORT: 3000
+    networks:
+      - standard
+
+networks:
+  standard:
+    external: true
