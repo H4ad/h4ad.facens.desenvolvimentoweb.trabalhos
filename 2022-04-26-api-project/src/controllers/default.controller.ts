@@ -34,6 +34,10 @@ export function setupDefaultRoutes(app: Express/*, _: Connection*/): void {
     });
   });
 
+  app.get('/listaclientes', (_: Request, res) => {
+    return res.status(200).json(clients);
+  });
+
   app.delete('/deletacliente/:id', (req: Request, res) => {
     const id = Number(req.params.id);
     const client = clients.find(client => client.id === id);
@@ -45,5 +49,4 @@ export function setupDefaultRoutes(app: Express/*, _: Connection*/): void {
 
     return res.status(200).json({ mensagem: 'O cliente foi removido com sucesso.' });
   });
-
 }
